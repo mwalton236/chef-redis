@@ -7,7 +7,7 @@ def load_current_resource
 
   new_resource.redis_cluster_name new_resource.redis_cluster_name || node.redis.redis_cluster_name
 
-  if new_resource.redis_cluster_name
+  if get_cluster_master
     monitor_string = [get_cluster_master, new_resource.quorum].join(" ")
   else
     monitor_string = [new_resource.monitor_address, new_resource.monitor_port, new_resource.quorum].join(" ")
